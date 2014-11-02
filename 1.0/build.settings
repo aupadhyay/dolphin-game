@@ -1,0 +1,31 @@
+-- Supported values for orientation:
+-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+settings = {
+	
+	orientation = {
+		default = "landscapeRight",
+		supported = { "landscapeRight", }
+	},
+	
+    iphone =
+    {
+        plist =
+        {
+            UIAppFonts =
+            {
+                "norwester.otf"
+            },
+            UIApplicationExitsOnSuspend = true
+        },
+    },
+	
+	--[[
+	-- Android permissions
+
+	androidPermissions = {
+  		"android.permission.INTERNET",
+  	},
+
+	]]--
+}
