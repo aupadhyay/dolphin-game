@@ -72,10 +72,25 @@ function gameScene:createScene(e)
 	waterImg3.y = _H/2
 	mainGroup:insert(waterImg3)
 
-	player = display.newImageRect("images/player.png", 170,50)
+	--[[player = display.newImageRect("images/player.png", 170,50)
 	player.x = 100
 	player.y = _H - 70
-	mainGroup:insert(player)
+	mainGroup:insert(player)]]--
+	local sequenceData = {
+		{ name = "normalRun",  --name of animation sequence
+		  start = 1,  --starting frame index
+		  count = 4,  --total number of frames to animate consecutively before stopping or looping
+		  time = 400,  --optional, in milliseconds; if not supplied, the sprite is frame-based
+		  loopCount = 0,  --optional. 0 (default) repeats forever; a positive integer specifies the number of loops
+		  loopDirection = "forward"  --optional, either "forward" (default) or "bounce" which will play forward then backwards through the sequence of frames
+		}  --if defining more sequences, place a comma here and proceed to the next sequence sub-table
+	}
+	
+	player = display.newSprite( graphics.newImageSheet("images/player-sprite.png", 
+		{ width=237.5, height=112.5, numFrames=4, sheetContentWidth=477, sheetContentHeight=267 } ), sequenceData )
+	player.x = 100
+	player.y = _H - 70
+	player:play()
 
 	pauseBtn = display.newImageRect( "images/pause.png", 50,50 )
 	pauseBtn.x = 30
@@ -146,7 +161,7 @@ local popupText
 local popupTextTimer = nil
 
 function playerJump(e)
-	if(currentEnergy >= 2 0)then
+	if(currentEnergy >= 20)then
 		currentAir = maxAir
 		airDamageBar.width = maxAir - currentAir
 	
